@@ -1,14 +1,17 @@
 {
     "name": "PostgreSQL Practice",
-    "image": "postgres:latest",
-    "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash"
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {}
     },
-    "postCreateCommand": "psql -U youruser -d yourdatabase -c 'CREATE TABLE IF NOT EXISTS test (id SERIAL PRIMARY KEY, name VARCHAR(255));'",
-    "forwardPorts": [5432],
-    "remoteEnv": {
-        "POSTGRES_USER": "youruser",
-        "POSTGRES_PASSWORD": "yourpassword",
-        "POSTGRES_DB": "yourdatabase"
+    "postCreateCommand": "docker-compose up -d",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-azuretools.vscode-docker",
+                "ms-python.python",
+                "ms-python.vscode-pylance"
+            ]
+        }
     }
 }
